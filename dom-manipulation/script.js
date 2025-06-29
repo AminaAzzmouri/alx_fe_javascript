@@ -4,17 +4,16 @@ let quotes = [
   { text: "Don't let yesterday take up too much of today.", category: "Inspiration" }
 ];
 
-// Function to display a random quote
+// Function to display a random quote using innerHTML for formatting
 function showRandomQuote() {
   const quoteDisplay = document.getElementById("quoteDisplay");
   if (quotes.length === 0) {
-    quoteDisplay.textContent = "No quotes available.";
+    quoteDisplay.innerHTML = "<em>No quotes available.</em>";
     return;
   }
-  // Pick random quote
   const randomIndex = Math.floor(Math.random() * quotes.length);
   const quote = quotes[randomIndex];
-  quoteDisplay.textContent = `"${quote.text}" — (${quote.category})`;
+  quoteDisplay.innerHTML = `<blockquote>"${quote.text}"</blockquote><p><strong>Category:</strong> ${quote.category}</p>`;
 }
 
 // Function to add a new quote from user input
@@ -30,16 +29,12 @@ function addQuote() {
     return;
   }
 
-  // Add the new quote to the array
   quotes.push({ text: newQuote, category: newCategory });
 
-  // Clear input fields
   quoteInput.value = "";
   categoryInput.value = "";
 
   alert("Quote added successfully!");
-
-  // Optionally, show the new quote immediately
   showRandomQuote();
 }
 
@@ -68,11 +63,11 @@ function createAddQuoteForm() {
   document.body.appendChild(formContainer);
 }
 
-// Initialize the app
+// Initialize the app on window load
 window.onload = () => {
   showRandomQuote();
   createAddQuoteForm();
 };
 
-// Also bind the existing button to show a new quote
+// Bind the existing button to show a new quote
 document.getElementById("newQuote").addEventListener("click", showRandomQuote);
