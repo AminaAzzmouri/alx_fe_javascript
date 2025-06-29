@@ -2,42 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dynamic Quote Generator</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    #syncNotification {
-      display: none;
-      background: #ffc;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #cc9;
-    }
-  </style>
 </head>
 <body>
   <h1>Dynamic Quote Generator</h1>
 
+  <!-- Notification area -->
+  <div id="notification" style="color: green; margin-bottom: 10px;"></div>
+
+  <div id="quoteDisplay"></div>
+
+  <button id="newQuote">Show New Quote</button>
+
   <div>
-    <label for="categoryFilter">Filter by category:</label>
-    <select id="categoryFilter" onchange="filterQuotes()">
-      <option value="all">All Categories</option>
-    </select>
+    <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
+    <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
+    <button onclick="addQuote()">Add Quote</button>
   </div>
 
-  <div id="quoteDisplay" style="margin: 20px 0; font-style: italic;"></div>
+  <select id="categoryFilter" onchange="filterQuotes()">
+    <option value="all">All Categories</option>
+  </select>
 
-  <button onclick="showRandomQuote()">Show Random Quote</button>
-
-  <h2>Add New Quote</h2>
-  <input type="text" id="newQuoteText" placeholder="Quote text" />
-  <input type="text" id="newQuoteCategory" placeholder="Category" />
-  <button onclick="addQuote()">Add Quote</button>
-
-  <h2>Import / Export Quotes (JSON)</h2>
+  <button id="exportQuotes">Export Quotes</button>
   <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
-  <button onclick="exportToJsonFile()">Export Quotes</button>
 
-  <div id="syncNotification">
-    Quotes updated from server and conflicts resolved.
-    <button
+  <script src="script.js"></script>
+</body>
+</html>
