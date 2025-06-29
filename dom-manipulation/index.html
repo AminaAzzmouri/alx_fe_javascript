@@ -2,55 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dynamic Quote Generator</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 600px;
-      margin: 30px auto;
-      padding: 10px;
-    }
-    #quoteDisplay {
-      font-size: 1.5em;
-      margin: 20px 0;
-      padding: 10px;
-      border-left: 4px solid #007bff;
-      background-color: #f9f9f9;
-    }
-    label, input, select, button {
-      margin: 5px 0;
-      display: block;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    button {
-      cursor: pointer;
-      padding: 10px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 3px;
-    }
-  </style>
 </head>
 <body>
   <h1>Dynamic Quote Generator</h1>
 
-  <!-- Category selector -->
-  <label for="categorySelect">Choose a category:</label>
-  <select id="categorySelect"></select>
-
-  <!-- Quote display area -->
-  <div id="quoteDisplay">Click "Show New Quote" to start!</div>
+  <div id="quoteDisplay"></div>
   <button id="newQuote">Show New Quote</button>
 
-  <!-- Form to add a new quote -->
-  <h2>Add a New Quote</h2>
-  <div id="addQuoteForm">
+  <div>
     <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
     <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
-    <button id="addQuoteButton">Add Quote</button>
+    <button onclick="addQuote()">Add Quote</button>
+  </div>
+
+  <div>
+    <button id="exportQuotesBtn">Export Quotes</button>
+    <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
   </div>
 
   <script src="script.js"></script>
