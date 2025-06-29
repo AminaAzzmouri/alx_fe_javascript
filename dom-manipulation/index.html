@@ -2,33 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dynamic Quote Generator</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    #syncNotification {
+      display: none;
+      background: #ffc;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #cc9;
+    }
+  </style>
 </head>
 <body>
   <h1>Dynamic Quote Generator</h1>
 
-  <!-- Category Filter Dropdown -->
-  <label for="categoryFilter">Filter by Category:</label>
-  <select id="categoryFilter" onchange="filterQuotes()">
-    <option value="all">All Categories</option>
-    <!-- Categories will be populated dynamically -->
-  </select>
-
-  <div id="quoteDisplay"></div>
-  <button id="newQuote">Show New Quote</button>
-
   <div>
-    <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
-    <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
-    <button onclick="addQuote()">Add Quote</button>
+    <label for="categoryFilter">Filter by category:</label>
+    <select id="categoryFilter" onchange="filterQuotes()">
+      <option value="all">All Categories</option>
+    </select>
   </div>
 
-  <div>
-    <button id="exportQuotesBtn">Export Quotes</button>
-    <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
-  </div>
+  <div id="quoteDisplay" style="margin: 20px 0; font-style: italic;"></div>
 
-  <script src="script.js"></script>
-</body>
-</html>
+  <button onclick="showRandomQuote()">Show Random Quote</button>
+
+  <h2>Add New Quote</h2>
+  <input type="text" id="newQuoteText" placeholder="Quote text" />
+  <input type="text" id="newQuoteCategory" placeholder="Category" />
+  <button onclick="addQuote()">Add Quote</button>
+
+  <h2>Import / Export Quotes (JSON)</h2>
+  <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
+  <button onclick="exportToJsonFile()">Export Quotes</button>
+
+  <div id="syncNotification">
+    Quotes updated from server and conflicts resolved.
+    <button
